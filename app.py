@@ -1,5 +1,5 @@
 """
-app.py — Streamlit UI for  AI RAG Chatbot (Groq + LLaMA 3.3 70B + ChromaDB + SQLite)
+app.py — Streamlit UI for  AI RAG Chatbot (Groq + GPT OSS 120B + ChromaDB + SQLite)
          Auth layer added: login / signup / logout, per-user chat history.
 """
 import os
@@ -32,7 +32,7 @@ init_users_db()
 init_session()
 
 st.set_page_config(
-    page_title=" AI RAG Chatbot — LLaMA 3.3 via Groq",
+    page_title=" AI RAG Chatbot — GPT OSS via Groq",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -228,7 +228,7 @@ def show_auth_page() -> None:
           <div class="auth-brand-title">AI RAG Chatbot</div>
           <div class="auth-brand-sub">Your intelligent document assistant</div>
           <div class="auth-pills">
-            <span class="auth-pill">⚡ LLaMA 3.3 70B</span>
+            <span class="auth-pill">⚡ GPT OSS 120B</span>
             <span class="auth-pill">🚀 Groq</span>
             <span class="auth-pill">🗄️ ChromaDB</span>
           </div>
@@ -317,7 +317,7 @@ def show_chatbot() -> None:
     # ── Sidebar ──────────────────────────────────────────────────────────────
     with st.sidebar:
         st.markdown("## 🤖  AI RAG Chatbot")
-        st.markdown("**Powered by LLaMA 3.3 70B + Groq**")
+        st.markdown("**Powered by GPT OSS 120B + Groq**")
         st.divider()
 
         # Metrics
@@ -435,7 +435,7 @@ def show_chatbot() -> None:
       <div style="font-size:2rem;"></div>
       <div>
         <h1>🤖AI RAG Chatbot</h1>
-        <p>Ask questions about your documents · Powered by LLaMA 3.3 70B via Groq API</p>
+        <p>Ask questions about your documents · Powered by GPT OSS 120B via Groq API</p>
       </div>
     </div>
     """, unsafe_allow_html=True)
@@ -453,7 +453,7 @@ def show_chatbot() -> None:
     if not st.session_state.messages:
         with st.chat_message("assistant", avatar="😎"):
             st.markdown(
-                f"👋 **Welcome back, {username}!** I'm your AI RAG Chatbot powered by **LLaMA 3.3 70B via Groq**.\n\n"
+                f"👋 **Welcome back, {username}!** I'm your AI RAG Chatbot powered by **GPT OSS 120B via Groq**.\n\n"
                 "📂 Upload documents in the sidebar (PDF, DOCX, TXT, CSV) and ask me anything about them.\n\n"
                 "⚡ Groq gives **ultra-fast** responses — try it!"
             )

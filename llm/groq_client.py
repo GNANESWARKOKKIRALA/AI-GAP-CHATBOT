@@ -1,5 +1,5 @@
 """
-groq_client.py — Groq API integration with LLaMA 3.3 70B
+groq_client.py — Groq API integration with GPT OSS 120B
                  Token limit fix: trims history to avoid context overflow
 """
 import os
@@ -8,7 +8,7 @@ from typing import List, Dict, Generator
 
 client = None
 
-# ── Safe limits for llama-3.3-70b-versatile (128k context) ──────────────────
+# ── Safe limits for openai/gpt-oss-120b (128k context) ──────────────────
 # We keep the last N exchanges so we never approach the token ceiling.
 # Each message ≈ 200-400 tokens on average; 20 messages ≈ 8k tokens max.
 MAX_HISTORY_MESSAGES = 20   # keep last 20 messages (10 exchanges)
@@ -36,7 +36,7 @@ def build_system_prompt(context: str) -> str:
             f"RETRIEVED CONTEXT:\n{context}"
         )
     return (
-        "You are a helpful AI chatbot assistant powered by LLaMA 3.3 70B via Groq. "
+        "You are a helpful AI chatbot assistant powered by GPT OSS 120B via Groq. "
         "You help users by answering questions about documents they upload. "
         "No documents have been uploaded yet. "
         "Answer general questions from your own knowledge. "
@@ -72,7 +72,7 @@ def chat(
     Send messages to Groq LLaMA and yield response chunks.
     Automatically trims history to prevent token-limit errors.
     """
-    model         = os.getenv("LLAMA_MODEL", "llama-3.3-70b-versatile")
+    model         = os.getenv("LLAMA_MODEL", "openai/gpt-oss-120b")
     system_prompt = build_system_prompt(context)
     safe_messages = trim_history(messages)
 
